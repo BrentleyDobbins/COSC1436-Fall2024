@@ -6,15 +6,19 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
 
 int main()
 {
     //Story 2
 
-    std::string name;
-    std::cout << "Enter your name: ";
-    std::getline(std::cin, name);
-    std::cout << std::endl;
+    string name;
+    cout << "Enter your name: ";
+    getline(std::cin, name);
+    cout << endl;
     
     // Lab Grades
     int lab1;
@@ -22,71 +26,88 @@ int main()
     int lab3;
     int lab4;
 
-    std::cout << "Grade for Lab 1: ";
-    std::cin >> lab1;
-    std::cout << "Grade for Lab 2: ";
-    std::cin >> lab2;
-    std::cout << "Grade for Lab 3: ";
-    std::cin >> lab3;
-    std::cout << "Grade for Lab 4: ";
-    std::cin >> lab4;
-    std::cout << std::endl;
+    cout << "Enter grade for Lab 1: ";
+    cin >> lab1;
+    cout << "Enter grade for Lab 2: ";
+    cin >> lab2;
+    cout << "Enter grade for Lab 3: ";
+    cin >> lab3;
+    cout << "Enter grade for Lab 4: ";
+    cin >> lab4;
+    cout << std::endl;
     
     // Exam Grades
     int exam1;
     int exam2;
     int exam3;
 
-    std::cout << "Grade for Exam 1: ";
-    std::cin >> exam1;
-    std::cout << "Grade for Exam 2: ";
-    std::cin >> exam2;
-    std::cout << "Grade for Exam 3: ";
-    std::cin >> exam3;
-    std::cout << std::endl;
+    cout << "Enter grade for Exam 1: ";
+    cin >> exam1;
+    cout << "Enter grade for Exam 2: ";
+    cin >> exam2;
+    cout << "Enter grade for Exam 3: ";
+    cin >> exam3;
+    cout << std::endl;
+
+    // Other Grades - Story 6
+    int participation;
+    int finalExam;
+
+    cout << "Enter grade for Participation: ";
+    cin >> participation;
+    cout << "Enter grade for Final Exam: ";
+    cin >> finalExam;
+
 
     //Story 3
 
-    int labGradeAverage = double (lab1 + lab2 + lab3 + lab4) / 4;
-    double result = labGradeAverage;
+    
+    
+    cout << name;
+    cout << endl;
+    cout << endl;
+    cout << name << ", your lab grades are: " << endl;
+    cout << "Lab 1: " << lab1 << endl;
+    cout << "Lab 2: " << lab2 << endl;
+    cout << "Lab 3: " << lab3 << endl;
+    cout << "Lab 4: " << lab4 << endl;
+    cout << endl;
 
-    std::cout << name;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << "Lab Grades: " << std::endl;
-    std::cout << "Lab 1: " << lab1 << std::endl;
-    std::cout << "Lab 2: " << lab2 << std::endl;
-    std::cout << "Lab 3: " << lab3 << std::endl;
-    std::cout << "Lab 4: " << lab4 << std::endl;
-    std::cout << "Lab Grade Average: " << labGradeAverage;
-    std::cout << std::endl;
-    std::cout << "Exam Grades: " << std::endl;
-    std::cout << "Exam 1: " << exam1 << std::endl;
-    std::cout << "Exam 2: " << exam2 << std::endl;
-    std::cout << "Exam 3: " << exam3 << std::endl;
+    //Story 4
 
+    
 
+    cout << name << ", your exam grades are: " << endl;
+    cout << "Exam 1: " << exam1 << endl;
+    cout << "Exam 2: " << exam2 << endl;
+    cout << "Exam 3: " << exam3 << endl;
+    cout << endl;
 
+    cout << name << ", your other grades are: " << endl;
+    cout << "Participation: " << participation << endl;
+    cout << "Final Exam: " << finalExam << endl;
+    cout << endl;
 
+    //Story 5
 
+    double labGradeAverage = static_cast<double>(lab1 + lab2 + lab3 + lab4) / 4;
+    double examGradeAverage = static_cast<double>(exam1 + exam2 + exam3) / 3;
+    double participationGrade = static_cast<double>(participation);
+    double finalExamGrade = static_cast<double>(finalExam);
+    double classAverage = (labGradeAverage * .65) + (examGradeAverage * .20) + (participationGrade * .05) + (finalExamGrade * .10);
 
+    cout << name << ", your class grades: ";
+    cout << endl;
+    cout << fixed << setprecision(2);
+    cout << "Lab Grade Average(65%): " << labGradeAverage << "%" << endl;
+    cout << "Exam Grade Average(20%): " << examGradeAverage << "%" << endl;
+    cout << "Participation Grade(5%): " << participationGrade << "%" << endl;
+    cout << "Final Exam Grade(10%): " << finalExamGrade << "%" << endl;
+    cout << endl;
+    cout << "Class Average: " << classAverage << "%" << endl;
 
-
-
-
-
-
+   
 
 
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
