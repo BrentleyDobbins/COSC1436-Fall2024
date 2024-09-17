@@ -1,7 +1,7 @@
 //Story 1
 
 // Lab1
-// Breantley Dobbins
+// Brentley Dobbins
 // COSC 1436 Fall 2024
 
 #include <iostream>
