@@ -71,25 +71,155 @@ int main()
 
     /////// Add a new movie
     //Creat a new movie
-    Movie movie;// {0};
+    Movie movie;// = {0};
 
-
-    //Get required Title
+   //Get required title
     cout << "Enter a title: ";
+    //cin >> movie.Title;
     getline(cin, movie.Title);
 
+    //Decision making - IF statement
+    // if-stmt ::= if (Eb) S ;
     if (movie.Title == "")
     {
         cout << "ERROR: Title is required" << endl;
-        cout << "Enter a title: ";
-        getline(cin, movie.Title);
 
         cout << "Enter a title: ";
         getline(cin, movie.Title);
     };
-        ///// Display movie details
+
+    //Get run length, at least 0, minutes
+    cout << "Enter run length (in minutes): ";
+    cin >> movie.RunLength;
+
+    //Nested if
+    //if (movie.RunLength <= 0)
+    //{
+    //    //Look at additional stuff...
+    //    
+    //    if (movie.RunLength < 0)
+    //    {
+    //        cout << "ERROR: Run length must be at least 0" << endl;
+
+    //        cout << "Enter run length (in minutes): ";
+    //        cin >> movie.RunLength;
+    //    };
+    //} else if (movie.RunLength > 1440)
+    //{
+    //    cout << "ERROR: Run length cannot be greater than a day" << endl;
+
+    //    cout << "Enter run length (in minutes): ";
+    //    cin >> movie.RunLength;
+    //};
+    if (movie.RunLength < 0 || movie.RunLength > 1440)
+    {
+        cout << "ERROR: Run length must be between 0 and 1440" << endl;
+
+        cout << "Enter run length (in minutes): ";
+        cin >> movie.RunLength;
+    };
+
+    //Get release year, at least 1900
+    cout << "Enter release year (1900+): ";
+    cin >> movie.ReleaseYear;
+
+    if (movie.ReleaseYear < 1900 || movie.ReleaseYear > 2100)
+    {
+        cout << "ERROR: Release year must be between 1900 and 2100" << endl;
+
+        cout << "Enter release year (1900+): ";
+        cin >> movie.ReleaseYear;
+    };
+
+    //Get the optional description
+    cout << "Enter optional description: ";
+    cin.ignore();
+    getline(cin, movie.Description);
+
+    //Get Is classic
+    char isClassic;
+    cout << "Is this a classic (Y/N)? ";
+    cin >> isClassic;
+
+    /*if (isClassic == 'Y')
+        movie.IsClassic = true;
+    else if (isClassic == 'y')
+        movie.IsClassic = true;
+    else if (isClassic == 'N')
+        movie.IsClassic = false;
+    else if (isClassic == 'n')
+        movie.IsClassic = false;*/
+   // if (isClassic == 'Y' || isClassic == 'y')
+     //   movie.IsClassic = true;
+    //else if (isClassic == 'N' || isClassic == 'n')
+      //  movie.IsClassic = false;
+   // else
+    //{
+      //  cout << "ERROR: You must enter Y or N";
+
+        //cout << "Is this a classic (Y/N)? ";
+        //cin >> isClassic;
+    //};
+
+    //Switch (select) statement - replacement for if-elseif where same expression compared to multiple values
+    // 1. Must compare a single expression to one or more constant values with equality
+    // 2. Switch expression must be an intregal type (char counts as int)
+    // 3. Each case label must be a compile-time constant expression
+    // 4. Each case label must be unique
+
+
+    switch (isClassic)
+    {
+        case 'Y' :  movie.IsClassic = true;
+        case 'y' :  movie.IsClassic = true;
+
+        case 'N' : movie.IsClassic = false;
+        case 'n' : movie.IsClassic = false;
+    };
+
+    ////if , else style statement
+    /*if (isClassic == 'Y' || isClassic == 'y')
+        movie.IsClassic = true;
+    else if (isClassic == 'N' || isClassic == 'n')
+        movie.IsClassic = false;
+    else
+    {
+        cout << "ERROR: You must enter Y or N";
+
+        cout << "Is this a classic (Y/N)? ";
+        cin >> isClassic;
+    };*/
+
+    ///// Display movie details
     cout << "---------------" << endl;
-    cout << movie.Title << endl;
+    cout << movie.Title << " (" << movie.ReleaseYear << ")" << endl;
+    cout << "Run Length (mins) " << movie.RunLength << endl;
+
+    //Long form - 1 
+    //if (movie.IsClassic)
+      //  cout << "Is Classic? Yes" << endl;
+    //else
+      //  cout << "Is Classic? No" << endl;
+
+    //Better but longer form - 2
+    //string classicIndicator;
+    //if (movie.IsClassic)
+      //  classicIndicator = "Yes";
+    //else
+      //  classicIndicator = "No";
+    //cout << "Is Classic? " << classicIndicator << endl;
+
+    //Shorter form using conditional operator => Eb ? Et : Ef
+    //string classicIndicator = movie.IsClassic ? "Yes" : "No";
+    //cout << "Is Classic? " << classicIndicator << endl;
+
+    //Shortest form using conditional operator => Eb ? Et : Ef
+    // Et and Ef = must be the exact same type, type coercion is not allowed. *May need to use static_cast*
+    cout << "Is Classic? " << (movie.IsClassic ? "Yes" : "No") << endl;
+
+    if (movie.Description != "")
+        cout << movie.Description << endl;
+    cout << "---------------" << endl;
 
 }
 
