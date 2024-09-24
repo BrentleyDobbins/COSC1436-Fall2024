@@ -23,6 +23,14 @@ struct Movie
 
 };
 
+//Intregal data type with named values
+enum MenuCommand
+{
+    MC_AddMovie,
+    MC_EditMovie,
+    MC_DeleteMovie,
+    MC_ViewMovie
+};
 
 int main()
 {
@@ -68,6 +76,49 @@ int main()
     // Movie: Title, Actor(s), Run Length, Description, Genres, Director(s), Release Year, MPAA Rating
     //Decision Making -- IF statement 
     // if-stmt ::=
+
+    //// Show menu
+    cout << "Movie Library" << endl;
+    cout << "______________" << endl;
+    cout << "A)dd Movie" << endl;
+    cout << "E)dit Movie" << endl;
+    cout << "D)elete Movie" << endl;
+    cout << "V)iew Movie" << endl;
+    
+    //// Get input
+    char input;
+    cin >> input;
+
+    MenuCommand menuCommand;
+
+   /* switch (input)
+    {
+        case 'A':
+        case 'a': menuCommand = 1; break;
+
+        case 'E':
+        case 'e': menuCommand = 2; break;
+
+        case 'D':
+        case 'd': menuCommand = 3; break;
+
+        case 'V':
+        case 'v': menuCommand = 4; break;
+
+        default: cout << "Bad input" << endl; break;
+    };*/
+
+
+    //// Handle menu command
+    switch (menuCommand)
+    {
+        case MenuCommand::MC_AddMovie:
+        case MenuCommand::MC_EditMovie:
+        case MenuCommand::MC_DeleteMovie:
+        case MenuCommand::MC_ViewMovie: cout << "Not implemented" << endl; break;
+
+    };
+
 
     /////// Add a new movie
     //Creat a new movie
@@ -170,11 +221,19 @@ int main()
 
     switch (isClassic)
     {
-        case 'Y' :  movie.IsClassic = true;
-        case 'y' :  movie.IsClassic = true;
+        case 'Y':  movie.IsClassic = true; break;
+        case 'y':  movie.IsClassic = true; break;
 
-        case 'N' : movie.IsClassic = false;
-        case 'n' : movie.IsClassic = false;
+        case 'N': movie.IsClassic = false; break;
+        case 'n': movie.IsClassic = false; break;
+
+        default:
+        {
+            cout << "ERROR: You must enter Y or N";
+
+            cout << "Is this a classic (Y/N)? ";
+            cin >> isClassic;
+        };
     };
 
     ////if , else style statement
