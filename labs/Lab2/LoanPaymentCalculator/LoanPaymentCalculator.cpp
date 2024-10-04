@@ -15,9 +15,8 @@ using namespace std;
 int main()
 {
     //Prompt user for initial loan value. Must be between $1 - $1000 to be valid
-
-    int loanAmount;
-
+    
+    float loanAmount;
     cout << "Enter loan amount (1-1000): ";
     cin >> loanAmount;
 
@@ -30,7 +29,6 @@ int main()
     };
 
     float interestRate;
-
     cout << "Enter interest rate (%): ";
     cin >> interestRate;
 
@@ -39,10 +37,34 @@ int main()
         cout << "ERROR: Interest rate must be between 1-100" << endl;
 
         cout << "Enter interest rate (%): ";
-        cin >> interestRate; 
+        cin >> interestRate;
 
     };
 
-    cout << interestRate / 100;
+    float monthlyPayment;
+    cout << "How much do you want to pay each month? ";
+    cin >> monthlyPayment;
+
+    if (monthlyPayment < 0 || monthlyPayment > loanAmount)
+    {
+        cout << "ERROR: Must be a valid payment amount (Between 0 and Loan amount)";
+        cout << "How much do you want to pay each month? ";
+        cin >> monthlyPayment;
+
+    }
+    
+    
+    for ()
+    {
+
+
+    };
+    
+
+    cout << "Month" << setw(10) << "Balance" << setw(14) << "Payment" << setw(14) << "Interest" << setw(18) << "New Balance" << endl;
+    cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
+    cout << endl;
+    // |  Month  |  Balance  |  Payment  |  Interest  |  New Balance  |
+    
 
 }
