@@ -17,6 +17,10 @@ int main()
     //Prompt user for initial loan value. Must be between $1 - $1000 to be valid
     
     float loanAmount;
+    float interestRate;
+    float monthlyPayment;
+    
+
     cout << "Enter loan amount (1-1000): ";
     cin >> loanAmount;
 
@@ -28,7 +32,6 @@ int main()
         cin >> loanAmount;
     };
 
-    float interestRate;
     cout << "Enter interest rate (%): ";
     cin >> interestRate;
 
@@ -41,7 +44,6 @@ int main()
 
     };
 
-    float monthlyPayment;
     cout << "How much do you want to pay each month? ";
     cin >> monthlyPayment;
 
@@ -51,19 +53,24 @@ int main()
         cout << "How much do you want to pay each month? ";
         cin >> monthlyPayment;
 
-    }
+    };
+
     
-    
-    for ()
+
+    cout << "Month" << setw(12) << "Balance" << setw(14) << "Payment" << setw(14) << "Interest" << setw(18) << "New Balance" << endl;
+    cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
+    for (int months = 1; months < 13; ++months)
     {
+        float interest = loanAmount * (interestRate / 100);
+        float newBalance = loanAmount - monthlyPayment + interest;
 
-
+        cout << months << setw(12) << "$ " << loanAmount << setw(14) << "$ " << monthlyPayment << setw(14) << "$ " << interest << setw(18) << "$ " << newBalance << endl;
+        cout <<  endl;
     };
     
 
-    cout << "Month" << setw(10) << "Balance" << setw(14) << "Payment" << setw(14) << "Interest" << setw(18) << "New Balance" << endl;
-    cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
-    cout << endl;
+    
+    
     // |  Month  |  Balance  |  Payment  |  Interest  |  New Balance  |
     
 
