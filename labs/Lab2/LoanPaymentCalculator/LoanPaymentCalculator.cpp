@@ -19,6 +19,7 @@ int main()
     float loanAmount;
     float interestRate;
     float monthlyPayment;
+    int month = 1;
     
 
     cout << "Enter loan amount (1-1000): ";
@@ -59,13 +60,18 @@ int main()
 
     cout << "Month" << setw(12) << "Balance" << setw(14) << "Payment" << setw(14) << "Interest" << setw(18) << "New Balance" << endl;
     cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
-    for (int months = 1; months < 13; ++months)
-    {
-        float interest = loanAmount * (interestRate / 100);
-        float newBalance = loanAmount - monthlyPayment + interest;
 
-        cout << months << setw(12) << "$ " << loanAmount << setw(14) << "$ " << monthlyPayment << setw(14) << "$ " << interest << setw(18) << "$ " << newBalance << endl;
-        cout <<  endl;
+    while (loanAmount > 0)
+    {
+        if (loanAmount < monthlyPayment)
+            loanAmount = loanAmount - loanAmount;
+
+        else
+            loanAmount = loanAmount * (1 + interestRate / 100) - monthlyPayment;
+        
+        month = ++month;
+
+        cout << month << loanAmount;
     };
     
 
