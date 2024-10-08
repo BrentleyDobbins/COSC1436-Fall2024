@@ -35,11 +35,8 @@ enum MenuCommand
     //MC_End
 };
 
-
-
 int main()
 {
-    
     //// Show menu
     cout << "Movie Library" << endl;
     cout << "---------------" << endl;
@@ -48,16 +45,9 @@ int main()
     cout << "D)elete Movie" << endl;
     cout << "V)iew Movie" << endl;
 
-    //While-stmt ::= while (Eb) S;
-    //  Pretest, S executes zero or more times
-
     //// Get input
     MenuCommand menuCommand = (MenuCommand)0;
-    //bool done = false;
-    //while (!done)
-    //while (menuCommand == 0); infinite loop, don't do it
-
-    while (menuCommand == 0)
+    do
     {
         char input;
         cin >> input;
@@ -78,7 +68,7 @@ int main()
 
             default: cout << "Bad input" << endl; break;
         };
-    };
+    } while (menuCommand == 0);
     cin.ignore();
 
     //// Handle menu command
@@ -95,28 +85,24 @@ int main()
     Movie movie;// = {0};
 
     //Get required title
-    while (movie.Title == "")
+    do
     {
         cout << "Enter a title: ";
-        //cin >> movie.Title;
         getline(cin, movie.Title);
 
-        //Decision making - IF statement
-        // if-stmt ::= if (Eb) S ;
         if (movie.Title == "")
             cout << "ERROR: Title is required" << endl;
-    };
+    } while (movie.Title == "");
 
     //Get run length, at least 0, minutes
-    movie.RunLength = -1;
-    while (movie.RunLength < 0 || movie.RunLength > 1440)
+    do
     {
         cout << "Enter run length (in minutes): ";
         cin >> movie.RunLength;
 
         if (movie.RunLength < 0 || movie.RunLength > 1440)
             cout << "ERROR: Run length must be between 0 and 1440" << endl;
-    };
+    } while (movie.RunLength < 0 || movie.RunLength > 1440);
 
     //Get release year, at least 1900
     while (movie.ReleaseYear < 1900 || movie.ReleaseYear > 2100)
@@ -166,17 +152,15 @@ int main()
         getline(cin, genre);
         if (genre == "")
             break; //Exits the loop
-        //continue;  //Loops only - stops the current iteration and loops again
 
         movie.Genre += genre + ", ";
     };
-    
+
     ///// Display movie details
     cout << "---------------" << endl;
     cout << movie.Title << " (" << movie.ReleaseYear << ")" << endl;
     cout << "Run Length (mins) " << movie.RunLength << endl;
 
-     
     cout << "Is Classic? " << (movie.IsClassic ? "Yes" : "No") << endl;
     if (movie.Genre != "")
         cout << "Genre(s) " << movie.Genre << endl;
@@ -184,5 +168,3 @@ int main()
         cout << movie.Description << endl;
     cout << "---------------" << endl;
 }
-
-//
