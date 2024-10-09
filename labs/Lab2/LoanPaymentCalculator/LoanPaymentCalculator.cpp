@@ -17,42 +17,46 @@ int main()
 
         double loanAmount, interestRate, monthlyPayment;
 
-        cout << "Please enter the loan amount: ";
-        cin >> loanAmount;
+   cout << "Please enter the loan amount: ";
+   cin >> loanAmount;
 
-        cout << "Please enter the interest rate (%): ";
-        cin >> interestRate;
+   cout << "Please enter the interest rate (%): ";
+   cin >> interestRate;
 
-        do 
-        {
-            cout << "How much do you want to pay each month? ";
-            cin >> monthlyPayment;
+   do 
+   {
+      cout << "How much do you want to pay each month? ";
+      cin >> monthlyPayment;
 
-            if (monthlyPayment <= 0) 
-            {
-                cout << "ERROR: Invalid monthly payment" << endl;
-            }
-        } while (monthlyPayment <= 0);
+      if (monthlyPayment <= 0) 
+      {
+         cout << "ERROR: Invalid monthly payment" << endl;
+      }
+   } while (monthlyPayment <= 0);
 
-        interestRate = (interestRate / 100) / 12;
+   interestRate = (interestRate / 100) / 12;
 
-        double balance = loanAmount;
-        double interest;
-        int month = 0;
+   double balance = loanAmount;
+   double interest;
+   int month = 0;
 
-        cout << setw(6) << "Month" << setw(12) << "Balance" << setw(12) << "Payment" << setw(12) << "Interest" << setw(15) << "New Balance" << endl;
-        cout << string(60, '-') << endl;
+   cout << endl;
+   cout << setw(6) << "Month" << setw(12) << "Balance" << setw(12) << "Payment" << setw(12) << "Interest" << setw(15) << "New Balance" << endl;
+   cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
 
-        while (balance > 0) 
-        {
-            month++;
-            interest = balance * interestRate;
-            double payment = (balance + interest < monthlyPayment) ? balance + interest : monthlyPayment;
+        
+   while (balance > 0)
+   {
+       month++;
+       interest = balance * interestRate;
+       double payment = (balance + interest < monthlyPayment) ? balance + interest : monthlyPayment;
 
-            cout << setw(6) << month << setw(12) << fixed << setprecision(2) << "$ " << balance << setw(12) << "$ " << payment << setw(12) << "$ " << interest << setw(15) << "$ " << balance + interest - payment << endl;
+       cout << setw(3) << month << setw(8) << fixed << setprecision(2) << "$ " << balance << setw(8) << "$ " << payment << setw(8) << "$ " << interest << setw(10) << "$ " << balance + interest - payment << endl;
 
-            balance = balance + interest - payment;
-        }
-
+       balance = balance + interest - payment;
       
+       if (balance == 0)
+           cout << setw(4) << " Total" << setw(19) << "$ " << payment << setw(9) << "$ " << interest << endl;
+   };
+
 }
