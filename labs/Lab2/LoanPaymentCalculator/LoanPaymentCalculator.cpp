@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <string>
 
 using namespace std;
 
@@ -47,7 +46,7 @@ int main()
         
    while (balance > 0)
    {
-       month++;
+       ++month;
        interest = balance * interestRate;
        double payment = (balance + interest < monthlyPayment) ? balance + interest : monthlyPayment;
 
