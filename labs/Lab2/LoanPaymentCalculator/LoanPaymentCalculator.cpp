@@ -7,77 +7,55 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <string>
 
 using namespace std;
 
 
 int main()
 {
-    //Prompt user for initial loan value. Must be between $1 - $1000 to be valid
-    
-    double currentBalance;
-    double inputInterest;
-    double payAmount;
-    int month = 0;
-    
 
-    cout << "Enter loan amount (1-1000): ";
-    cin >> currentBalance;
+        double loanAmount, interestRate, monthlyPayment;
 
-    if (currentBalance < 0 || currentBalance > 1000)
-    {
-        cout << "ERROR: Loan amount must be betwwen 1-1000" << endl;
+   cout << "Please enter the loan amount: ";
+   cin >> loanAmount;
 
-        cout << "Enter loan amount (1-1000): ";
-        cin >> currentBalance;
-    };
+   cout << "Please enter the interest rate (%): ";
+   cin >> interestRate;
 
-    cout << "Enter interest rate (%): ";
-    cin >> inputInterest;
+   do 
+   {
+      cout << "How much do you want to pay each month? ";
+      cin >> monthlyPayment;
 
-    if (inputInterest < 1 || inputInterest > 100)
-    {
-        cout << "ERROR: Interest rate must be between 1-100" << endl;
+      if (monthlyPayment <= 0) 
+      {
+         cout << "ERROR: Invalid monthly payment" << endl;
+      }
+   } while (monthlyPayment <= 0);
 
-        cout << "Enter interest rate (%): ";
-        cin >> inputInterest;
+   interestRate = (interestRate / 100) / 12;
 
-    };
+   double balance = loanAmount;
+   double interest;
+   int month = 0;
 
-    cout << "How much do you want to pay each month? ";
-    cin >> payAmount;
+   cout << endl;
+   cout << setw(6) << "Month" << setw(12) << "Balance" << setw(12) << "Payment" << setw(12) << "Interest" << setw(15) << "New Balance" << endl;
+   cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
 
-    if (payAmount < 0 || payAmount > currentBalance)
-    {
-        cout << "ERROR: Must be a valid payment amount (Between 0 and Loan amount)";
-        cout << "How much do you want to pay each month? ";
-        cin >> payAmount;
+        
+   while (balance > 0)
+   {
+       ++month;
+       interest = balance * interestRate;
+       double payment = (balance + interest < monthlyPayment) ? balance + interest : monthlyPayment;
 
-    };
+       cout << setw(3) << month << setw(8) << fixed << setprecision(2) << "$ " << balance << setw(8) << "$ " << payment << setw(8) << "$ " << interest << setw(10) << "$ " << balance + interest - payment << endl;
 
-    
-    cout << "Month" << setw(12) << "Balance" << setw(14) << "Payment" << setw(14) << "Interest" << setw(18) << "New Balance" << endl;
-    cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
-
-    double interestRate = (inputInterest / 100);
-
-    while (currentBalance > 0)
-    {
-        currentBalance -= payAmount;
-        double interest = currentBalance * interestRate;
-        currentBalance += interest;
-        if (currentBalance < payAmount)
-            currentBalance = currentBalance - currentBalance;
-
-        if (currentBalance <= 0)
-            break;
-
-        cout << ++month << setw(12) << currentBalance << setw(14) << payAmount << setw(14) << interest << setw(18) << currentBalance << endl;
-
-    };
-    
-    // |  Month  |  Balance  |  Payment  |  Interest  |  New Balance  |
-    
+       balance = balance + interest - payment;
+      
+       if (balance == 0)
+           cout << setw(4) << " Total" << setw(19) << "$ " << payment << setw(9) << "$ " << interest << endl;
+   };
 
 }
