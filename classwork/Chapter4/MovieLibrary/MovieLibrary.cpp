@@ -242,7 +242,7 @@ int main()
 
     //Get genre(s)
     //int genreCount = 0;
-    //while (genreCount < 5) // = 0, < N (Rarely) = 1, <= N
+    //while (genreCount < 5)   // = 0, < N  (rarely) = 1, <= N
     //{
     //    cout << "Enter optional genre " << (genreCount + 1) << ": ";
 
@@ -256,9 +256,9 @@ int main()
     //    genreCount++;  //prefix/postfix
     //};
 
-    //for loop - designed to iterate a fixed number of times with a well known start and end |e.g.) for (initializer expression; test expression; updated expression)
+    //for loop - designed to iterate a fixed number of times with a well known start and end    
     //int genreIndex = 0;
-    for (int index = 0; index < 5; ++index) // = 0, < N (Rarely) = 1, <= N 
+    for (int index = 0; index < 5; ++index)  // = 0, < N  (rarely) = 1, <= N
     {
         cout << "Enter optional genre " << (index + 1) << ": ";
 
@@ -266,18 +266,16 @@ int main()
         getline(cin, genre);
         if (genre == "")
             break; //Exits the loop
-        //continue; //LOOPS ONLY - stops the current iteration and loops again 
-        {
-            movie.Genre += genre + ", ";
-        };
+        //continue;  //Loops only - stops the current iteration and loops again
+
+        movie.Genre += genre + ", ";
     };
     //cout << genreIndex;
 
     //More complex for loops
-    //for (int index = 0, int y = 1; index < 5, index < 5; ++index, y += 2){};
-    //int someIndex
-    //for (;;) {}; //infinite loop
-
+    //for (int index = 0, int y = 1; index < 5, index < y; ++index, y+=2) {};
+    //int someIndex = 0;
+    //for (;;) {};  //infinite loop
 
     ///// Display movie details
     cout << "---------------" << endl;
@@ -319,3 +317,17 @@ int main()
 // Main operations used are :: <= , >= , == , != (Rare occasions)
 // _strcmpi(str, str) :: used for string comparison insensitive (still has errors with code)
 // 
+
+
+
+/* Lab 2 Tips:
+    Balance = $100
+    Interest = 10%
+    Payment = $10/month
+
+    Interest = balance(newBalance) * interest rate
+    newBalance = balance - payment + interest
+    newBalance += interest
+    when the loop cycles back through the Balance needs to become the newBalance
+
+*/

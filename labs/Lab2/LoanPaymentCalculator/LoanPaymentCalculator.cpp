@@ -7,23 +7,55 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <string>
 
 using namespace std;
 
 
 int main()
 {
-    //Prompt user for initial loan value. Must be between $1 - $1000 to be valid
 
-    int loanAmount;
+        double loanAmount, interestRate, monthlyPayment;
 
-    cout << "Enter loan amount ($1-$1000): ";
-    cin >> loanAmount;
+   cout << "Please enter the loan amount: ";
+   cin >> loanAmount;
 
-    if (loanAmount < 0 || loanAmount > 1000)
-        cout << "ERROR: Loan amount must be betwwen $1-$1000";
+   cout << "Please enter the interest rate (%): ";
+   cin >> interestRate;
 
+   do 
+   {
+      cout << "How much do you want to pay each month? ";
+      cin >> monthlyPayment;
 
+      if (monthlyPayment <= 0) 
+      {
+         cout << "ERROR: Invalid monthly payment" << endl;
+      }
+   } while (monthlyPayment <= 0);
+
+   interestRate = (interestRate / 100) / 12;
+
+   double balance = loanAmount;
+   double interest;
+   int month = 0;
+
+   cout << endl;
+   cout << setw(6) << "Month" << setw(12) << "Balance" << setw(12) << "Payment" << setw(12) << "Interest" << setw(15) << "New Balance" << endl;
+   cout << setw(70) << setfill('-') << "" << setfill(' ') << endl;
+
+        
+   while (balance > 0)
+   {
+       ++month;
+       interest = balance * interestRate;
+       double payment = (balance + interest < monthlyPayment) ? balance + interest : monthlyPayment;
+
+       cout << setw(3) << month << setw(8) << fixed << setprecision(2) << "$ " << balance << setw(8) << "$ " << payment << setw(8) << "$ " << interest << setw(10) << "$ " << balance + interest - payment << endl;
+
+       balance = balance + interest - payment;
+      
+       if (balance == 0)
+           cout << setw(4) << " Total" << setw(19) << "$ " << payment << setw(9) << "$ " << interest << endl;
+   };
 
 }
