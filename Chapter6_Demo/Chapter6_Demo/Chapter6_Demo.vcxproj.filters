@@ -15,7 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+<<<<<<<< HEAD:Chapter6_Demo/Chapter6_Demo/Chapter6_Demo.vcxproj.filters
+    <ClCompile Include="Chapter6_Demo.cpp">
+========
     <ClCompile Include="MovieLibrary.cpp">
+>>>>>>>> cd6568a1ed4cd6e5f1752e9fe365d90f49bd65c2:classwork/Chapter6/MovieLibrary/MovieLibrary.vcxproj.filters
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
