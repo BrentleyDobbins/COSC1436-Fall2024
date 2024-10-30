@@ -6,9 +6,7 @@
 #include <cmath>
 #include <iomanip>
 #include <string>
-
 using namespace std;
-
 /// @brief Output table and calculations
 /// @param fallingTime 
 /// @param units 
@@ -54,6 +52,4 @@ int main()
     }
 
     FallingDistanceTable(fallingTime, units);
-
-    
 }
