@@ -58,7 +58,7 @@ void GradeArrayDemo() //Utilize this for the Lab!!!
     int grades[MaxGrades];
     double dummyValue = 0;
 
-    int estimatedMaxArraySize = //Size of array / size of element
+    int estimatedMaxArraySize = //Size of array / size of element       //sizeof :: returns the byte size of the value
         sizeof(grades) / sizeof(int); //Must be used within the same function/scope; works with local variables but not ideal
 
     int count = 0;
@@ -98,17 +98,105 @@ void GradeArrayDemo() //Utilize this for the Lab!!!
 
 void InitArrayDemo()
 {
-    int MaxRates = 100;
+    const int MaxRates = 100;
     double payRates[MaxRates] = {0}; //Zero intialized with = {0}
 
     //Zero initialize
     ////for (int index = 0; index < MaxRates; ++index)
     //////  payRates[index] = 0;
+
+    //Init days of month
+    std::string monthNames[12] = {"Jan", "Feb", "Mar", "Apr", "May", 
+                                  "Jun", "Jul", "Aug", "Sep", "Oct",
+                                  "Nov", "Dec"};
+    
+
+    // Zero extend initialize all elements
+    //int daysInMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; //Compiler will find the amount of elements used
+    /*daysInMonth[0] = daysInMonth[2] = daysInMonth[4] = daysInMonth[6] =
+        daysInMonth[7] = daysInMonth[9] = daysInMonth[11] = 31;
+    daysInMonth[1] = 28;
+    daysInMonth[3] = daysInMonth[5] = daysInMonth[8] = daysInMonth[10] = 30;*/
+   
+    for (int index = 0; index < 12; ++index)
+        std::cout << monthNames[index] << " has " << daysInMonth[index] << " days " << std::endl;
 };
+
+// Function parameters 'T id[]'
+//   Always use open array; No Size
+//   Size is always needed as parameter when using arrays
+bool AreArraysEqual( int left[], int leftSize, int right[], int rightSize ) //DO NOT put a size for array inside parameter decleration 'Open Array'
+{
+    if (leftSize != rightSize)
+        return false;
+
+    for (int index = 0; index < leftSize; ++index)
+        if (left[index] != right[index])
+            return false;
+
+    return true;
+};
+
+int CopyArray(int left[], int leftSize, int right[], int rightSize)
+{
+    int size = (leftSize < rightSize) ? leftSize : rightSize;
+    for (int index = 0; index < size; ++index)
+        left[index] = right[index];
+
+    return size;
+};
+
+//Array cannot be return type from function
+void InitializeArray(int values[], int size, int initialValue)
+{
+    for (int index = 0; index < size; ++index)
+        values[index] = initialValue;
+
+};
+
+void UseArrayDemo()
+{
+    int array1[20] = {0};
+
+    //for (int index = 0; index < 20; ++index)
+    //    array1[index] = index + 1;
+    //for (int& value : array1) //Syntax allows modification by using a pass-by reference
+    //    value = 1;
+
+    InitializeArray(array1, 20, 2);
+
+    //int index2 = 0;
+    //while (index2 < 20)                                                       //YOU ALWAYS NEED TO KNOW THE SIZE OF THE ARRAY AT RUN TIME!!!
+    //{
+    //    array1[index2++] = index2 + 1;                                                              //YOU ALWAYS NEED TO KNOW THE SIZE OF THE ARRAY AT RUN TIME!!!
+    //    /*array1[index2] = index2 + 1;
+    //    ++index2;*/                                                                   //YOU ALWAYS NEED TO KNOW THE SIZE OF THE ARRAY AT RUN TIME!!!
+    //}
+
+    //for (int index = 0; index < 20; ++index)         //Use if you need the index
+      //  std::cout << array1[index] << std::endl;
+    for (int value : array1)                           //equivalent to the for loop above; Use if you dont need the index; 
+        std::cout << value << std::endl;               //array must be declared within the same block of code that you are trying to iterate
+    
+    int array2[20] = {0};
+    int array3[20] = {0};
+
+    //Compare arrays
+    std::cout << (array2 == array3)                                 //Relational operators only return true when comparing to itself, Not with others
+              << " " << AreArraysEqual(array2, 20, array3, 20)
+              << std::endl;             
+
+    //Assignment
+    //  array3 = array2; *NOT ALLOWED: DOES NOT WORK            //YOU CAN NOT RETURN BACK AN ARRAY FROM A FUNCTION
+
+    CopyArray(array3, 20, array2, 20);
+
+}
 
 int main()
 {
-    InitArrayDemo();
+    UseArrayDemo();
 }
 
 void NameArrayDemo()
