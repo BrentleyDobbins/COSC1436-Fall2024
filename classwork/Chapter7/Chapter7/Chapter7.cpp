@@ -194,9 +194,63 @@ void UseArrayDemo()
 
 }
 
+void DisplayArray(int values[], int size, int valueWidth, int maxCellsPerRow)
+{
+    std::cout << std::left;
+    for (int index = 0; index < size; ++index)
+    {
+        std::cout << std::setw(valueWidth) << values[index] << " ";
+
+        //If we have printed out maxCellsPerRow values, then newLine
+        if ((index + 1) % maxCellsPerRow == 0)
+            std::cout << std::endl;
+    };
+    std::cout << std::right << std::endl;
+}
+
+//Multi-dimension table passed like single dimension tables
+// All dimensions other than rows must be fixed at compile time
+void DisplayTable(int values[][10], int size) //Must specify all dimensions other than the first for the rows
+{
+    for (int row = 0; row < size; ++row)
+        DisplayArray(values[row], 10, 5, 10);
+        /*for (int col = 0; col < 10; ++col);*/
+
+}
+
+void TableDemo()
+{
+    /*int values[] = {1, 2, 3, 4, 5,};
+    DisplayArray(values, 5, 10, 3);*/
+    //[rows][cols] - compile time size for all dimensions
+    int multiplyTable[50][10];
+
+    //Init value
+    
+    // Column major ordering - columns are enumerated, then rows (DONT DO THIS)
+    /*for (int col = 0; col < 10; ++col)
+        for (int row = 0; row < 5; ++row)
+            multiplyTable[row][col] = (row + 1) * (col + 1);*/
+
+    // Row major ordering - rows are enumerated, then columns (Used in most languages)
+    for (int row = 0; row < 5; ++row)
+        for (int col = 0; col < 10; ++col)
+            multiplyTable[row][col] = (row + 1) * (col + 1);
+
+    //Display Table
+    DisplayTable(multiplyTable, 5);
+    /*for (int row = 0; row < 5; ++row)
+    {
+        for (int col = 0; col < 10; ++col)
+            std::cout << std::setw(5) << multiplyTable[row][col];
+
+        std::cout << std::endl;
+    };*/
+}
+
 int main()
 {
-    UseArrayDemo();
+    TableDemo();
 }
 
 void NameArrayDemo()
